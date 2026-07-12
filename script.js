@@ -1,169 +1,141 @@
 window.onload = () => {
 
-    const loading = setTimeout(() => {
+    setTimeout(() => {
 
         document.body.classList.remove("not-loaded");
 
-        // ========= TYPEWRITER =========
+        typeMessage();
 
-        const message = "I LOVE YOU ❤️";
+        createBells();
 
-        const title = document.getElementById("title");
-
-        let i = 0;
-
-        function typeWriter(){
-
-            if(i < message.length){
-
-                title.innerHTML += message.charAt(i);
-
-                i++;
-
-                setTimeout(typeWriter,180);
-
-            }
-
-        }
-
-        typeWriter();
-
-        clearTimeout(loading);
+        createFireflies();
 
     },1000);
 
 };
 
+// ==========================
+// TYPEWRITER
+// ==========================
 
-// =======================
-// Random Firefly Movement
-// =======================
+function typeMessage(){
 
-const fireflies = document.querySelectorAll(".fireflies span");
+    const text = "FOR MY LILY OF THE VALLEY ❤️";
 
-fireflies.forEach((fly)=>{
+    const title = document.getElementById("title");
 
-    randomMove(fly);
+    let i = 0;
 
-});
+    function type(){
 
-function randomMove(fly){
+        if(i < text.length){
 
-    setInterval(()=>{
+            title.innerHTML += text.charAt(i);
 
-        const x = Math.random()*120-60;
+            i++;
 
-        const y = Math.random()*120-60;
+            setTimeout(type,140);
 
-        fly.animate([
+        }
 
-            {
-                transform:`translate(0px,0px)`
-            },
+    }
 
-            {
-                transform:`translate(${x}px,${y}px)`
-            }
-
-        ],{
-
-            duration:2500+Math.random()*2500,
-            fill:"forwards",
-            easing:"ease-in-out"
-
-        });
-
-    },2500);
+    type();
 
 }
 
+// ==========================
+// CREATE FLOWERS
+// ==========================
 
-// =======================
-// Flower Sway
-// =======================
+function createBells(){
 
-const flowers=document.querySelectorAll(".lily");
+    document.querySelectorAll(".bells").forEach(group=>{
 
-flowers.forEach((flower,index)=>{
+        let y = 0;
 
-    flower.animate([
+        for(let i=0;i<12;i++){
 
-        {
-            transform:"rotate(-2deg)"
-        },
+            const stem = document.createElement("div");
+            stem.className = "bell-stem";
 
-        {
-            transform:"rotate(2deg)"
-        },
+            const bell = document.createElement("div");
+            bell.className = "bell";
 
-        {
-            transform:"rotate(-2deg)"
+            const petal = document.createElement("div");
+            petal.className = "petal";
+
+            for(let j=1;j<=5;j++){
+
+                const s=document.createElement("div");
+
+                s.className="scallop sc"+j;
+
+                petal.appendChild(s);
+
+            }
+
+            const hole=document.createElement("div");
+
+            hole.className="center-hole";
+
+            petal.appendChild(hole);
+
+            bell.appendChild(petal);
+
+            stem.appendChild(bell);
+
+            // Random placement
+
+            y += 18 + Math.random()*8;
+
+            stem.style.top = y+"px";
+
+            stem.style.left = (i*11)+"px";
+
+            stem.style.transform =
+            `rotate(${25-Math.random()*55}deg)`;
+
+            bell.style.animationDelay =
+            (1+i*.12)+"s";
+
+            bell.style.transform =
+            `scale(${0.88+Math.random()*0.3})`;
+
+            group.appendChild(stem);
+
         }
 
-    ],{
-
-        duration:5000+index*700,
-        iterations:Infinity,
-        easing:"ease-in-out"
-
     });
 
-});
+}
 
+// ==========================
+// FIREFLIES
+// ==========================
 
-// =======================
-// Bell Glow
-// =======================
+function createFireflies(){
 
-const bells=document.querySelectorAll(".bell");
+    const container=document.querySelector(".fireflies");
 
-bells.forEach((bell)=>{
+    for(let i=0;i<45;i++){
 
-    bell.addEventListener("mouseenter",()=>{
+        const fly=document.createElement("span");
 
-        bell.style.filter="drop-shadow(0 0 15px white)";
+        fly.className="firefly";
 
-    });
+        fly.style.left=Math.random()*100+"vw";
 
-    bell.addEventListener("mouseleave",()=>{
+        fly.style.top=Math.random()*100+"vh";
 
-        bell.style.filter="none";
+        fly.style.animationDuration=
+        (6+Math.random()*7)+"s";
 
-    });
+        fly.style.animationDelay=
+        Math.random()*5+"s";
 
-});
+        container.appendChild(fly);
 
+    }
 
-// =======================
-// Twinkling Title
-// =======================
-
-setInterval(()=>{
-
-    const title=document.getElementById("title");
-
-    title.animate([
-
-        {
-            opacity:1,
-            transform:"scale(1)"
-        },
-
-        {
-            opacity:.75,
-            transform:"scale(1.03)"
-        },
-
-        {
-            opacity:1,
-            transform:"scale(1)"
-        }
-
-    ],{
-
-        duration:1800,
-        easing:"ease-in-out"
-
-    });
-
-},1800);
+}
