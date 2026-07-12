@@ -1292,3 +1292,650 @@ scaleY(1);
 }
 
 }
+/* =====================================
+   PREMIUM NIGHT GARDEN
+===================================== */
+
+/* Fireflies */
+
+.fireflies{
+
+position:absolute;
+
+inset:0;
+
+pointer-events:none;
+
+overflow:hidden;
+
+}
+
+.firefly{
+
+position:absolute;
+
+width:6px;
+height:6px;
+
+border-radius:50%;
+
+background:#fff7aa;
+
+box-shadow:
+0 0 8px #fff7aa,
+0 0 18px #fff7aa,
+0 0 35px rgba(255,247,170,.8);
+
+animation:
+floatFirefly linear infinite,
+blink 2.5s ease-in-out infinite;
+
+}
+
+@keyframes blink{
+
+0%,100%{
+opacity:.2;
+}
+
+50%{
+opacity:1;
+}
+
+}
+
+@keyframes floatFirefly{
+
+0%{
+transform:
+translate(0,0);
+}
+
+25%{
+transform:
+translate(35px,-60px);
+}
+
+50%{
+transform:
+translate(-20px,-110px);
+}
+
+75%{
+transform:
+translate(30px,-160px);
+}
+
+100%{
+transform:
+translate(0,-220px);
+}
+
+}
+
+/* ===========================
+   MOVING FOG
+=========================== */
+
+.mist{
+
+animation:
+mistMove 18s linear infinite;
+
+}
+
+@keyframes mistMove{
+
+0%{
+
+transform:
+translateX(-8%);
+
+}
+
+50%{
+
+transform:
+translateX(8%);
+
+}
+
+100%{
+
+transform:
+translateX(-8%);
+
+}
+
+}
+
+/* ===========================
+   MOON GLOW
+=========================== */
+
+.moon::after{
+
+content:"";
+
+position:absolute;
+
+inset:-60px;
+
+border-radius:50%;
+
+background:
+
+radial-gradient(
+
+rgba(210,240,255,.18),
+
+transparent 70%
+
+);
+
+filter:blur(35px);
+
+}
+
+/* ===========================
+   SHOOTING STAR
+=========================== */
+
+.shooting-star{
+
+position:absolute;
+
+width:160px;
+height:2px;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+white,
+
+transparent
+
+);
+
+transform:
+
+rotate(-35deg);
+
+animation:
+
+shoot 10s linear infinite;
+
+opacity:0;
+
+}
+
+@keyframes shoot{
+
+0%{
+
+left:-250px;
+top:120px;
+opacity:0;
+
+}
+
+10%{
+
+opacity:1;
+
+}
+
+30%{
+
+left:120%;
+
+top:260px;
+
+opacity:0;
+
+}
+
+100%{
+
+opacity:0;
+
+}
+
+}
+
+/* ===========================
+   FLOATING POLLEN
+=========================== */
+
+.pollen{
+
+position:absolute;
+
+width:3px;
+height:3px;
+
+border-radius:50%;
+
+background:white;
+
+opacity:.5;
+
+animation:
+
+pollenFloat linear infinite;
+
+}
+
+@keyframes pollenFloat{
+
+0%{
+
+transform:
+
+translateY(0);
+
+opacity:0;
+
+}
+
+20%{
+
+opacity:.5;
+
+}
+
+100%{
+
+transform:
+
+translateY(-320px);
+
+opacity:0;
+
+}
+
+}
+
+/* ===========================
+   BETTER STEM
+=========================== */
+
+.stem{
+
+box-shadow:
+
+0 0 15px rgba(90,255,120,.2);
+
+}
+
+/* ===========================
+   LEAF SHIMMER
+=========================== */
+
+.leaf{
+
+animation:
+
+leafGlow 6s ease-in-out infinite;
+
+}
+
+@keyframes leafGlow{
+
+0%,100%{
+
+filter:brightness(1);
+
+}
+
+50%{
+
+filter:brightness(1.12);
+
+}
+
+}
+
+/* ===========================
+   BELL SHADOWS
+=========================== */
+
+.bell{
+
+filter:
+
+drop-shadow(0 6px 8px rgba(0,0,0,.2));
+
+transition:
+
+transform .4s,
+
+filter .4s;
+
+}
+
+.bell:hover{
+
+transform:
+
+scale(1.12);
+
+filter:
+
+drop-shadow(0 0 12px white)
+drop-shadow(0 0 25px rgba(255,255,255,.8));
+
+}
+
+/* ===========================
+   GRASS
+=========================== */
+
+.grass{
+
+position:absolute;
+
+bottom:0;
+
+width:100%;
+
+height:120px;
+
+background:
+
+linear-gradient(
+
+to top,
+
+#0c3515,
+
+#174d24
+
+);
+
+overflow:hidden;
+
+}
+
+.grass::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:
+
+repeating-linear-gradient(
+
+90deg,
+
+transparent 0 6px,
+
+rgba(255,255,255,.03) 6px 7px
+
+);
+
+opacity:.25;
+
+}
+/* ===========================================
+      ULTRA DETAILED LILY OF THE VALLEY
+===========================================*/
+
+/* Hanging stem */
+
+.bell-stem{
+
+    width:2px;
+
+    background:
+    linear-gradient(
+    #9ef5a2,
+    #4ea95b
+    );
+
+    box-shadow:
+    0 0 4px rgba(130,255,150,.3);
+
+}
+
+/* Bell */
+
+.bell{
+
+    width:38px;
+    height:42px;
+
+    transform-origin:top center;
+
+}
+
+/* Main bell */
+
+.petal{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    radial-gradient(
+
+        circle at 30% 25%,
+
+        rgba(255,255,255,.95),
+
+        white 45%,
+
+        #eef5ef 70%,
+
+        #d7ddd8
+
+    );
+
+    border-radius:
+
+        48% 48% 42% 42%;
+
+    overflow:hidden;
+
+}
+
+/* Moon highlight */
+
+.petal::before{
+
+content:"";
+
+position:absolute;
+
+left:8px;
+top:5px;
+
+width:12px;
+height:18px;
+
+border-radius:50%;
+
+background:
+
+rgba(255,255,255,.65);
+
+filter:blur(2px);
+
+}
+
+/* Soft shadow */
+
+.petal::after{
+
+content:"";
+
+position:absolute;
+
+right:5px;
+bottom:8px;
+
+width:12px;
+height:18px;
+
+background:
+
+rgba(180,180,180,.12);
+
+border-radius:50%;
+
+filter:blur(4px);
+
+}
+
+/* Green cap */
+
+.bell::before{
+
+content:"";
+
+position:absolute;
+
+left:11px;
+top:-7px;
+
+width:16px;
+height:10px;
+
+background:
+
+linear-gradient(
+
+#86db89,
+
+#4f9f56
+
+);
+
+border-radius:
+
+50%;
+
+}
+
+/* Bottom scallops */
+
+.scallop{
+
+width:8px;
+height:8px;
+
+background:white;
+
+border-radius:50%;
+
+bottom:-2px;
+
+box-shadow:
+
+inset 0 -1px 1px rgba(0,0,0,.08);
+
+}
+
+/* Decorative ridges */
+
+.petal .ridge{
+
+position:absolute;
+
+top:8px;
+
+width:2px;
+
+height:26px;
+
+background:
+
+rgba(255,255,255,.28);
+
+border-radius:50%;
+
+}
+
+.r1{left:8px;}
+.r2{left:15px;}
+.r3{left:22px;}
+.r4{left:29px;}
+
+/* Tiny pollen opening */
+
+.center-hole{
+
+width:6px;
+height:4px;
+
+background:#d4d8d4;
+
+border-radius:50%;
+
+bottom:5px;
+
+}
+
+/* Glow */
+
+.bell{
+
+transition:.5s;
+
+}
+
+.bell:hover{
+
+transform:
+
+scale(1.08)
+
+rotate(2deg);
+
+filter:
+
+drop-shadow(0 0 15px white)
+
+drop-shadow(0 0 35px rgba(255,255,255,.8));
+
+}
+
+/* Swing */
+
+.bell{
+
+animation:
+
+bloom .8s backwards,
+
+bellSwing 5s ease-in-out infinite;
+
+}
+
+@keyframes bellSwing{
+
+0%,100%{
+
+transform:
+
+rotate(-2deg);
+
+}
+
+50%{
+
+transform:
+
+rotate(3deg);
+
+}
+
+}
