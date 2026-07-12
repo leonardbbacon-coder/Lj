@@ -10,25 +10,21 @@
 
 :root{
     --sky1:#020712;
-    --sky2:#08182d;
 
     --stem:#3e914d;
     --stem-dark:#255e34;
 
-    --leaf:#5ec96c;
-    --leaf-dark:#256b2e;
+    --leaf:#4fae5c;
+    --leaf-dark:#1f5c2b;
+    --leaf-light:#8fe39a;
 
     --petal:#ffffff;
-    --petal-shadow:#d7ddd8;
+    --petal-shadow:#dfe7e1;
 
-    --cap:#4f9f56;
-    --cap-light:#86db89;
+    --cap:#5aa862;
 }
 
-html,body{
-    width:100%;
-    height:100%;
-}
+html,body{ width:100%; height:100%; }
 
 body{
     position:relative;
@@ -45,14 +41,9 @@ body{
     animation:fade 2s ease;
 }
 
-.not-loaded *{
-    animation-play-state:paused!important;
-}
+.not-loaded *{ animation-play-state:paused!important; }
 
-@keyframes fade{
-    from{opacity:0;}
-    to{opacity:1;}
-}
+@keyframes fade{ from{opacity:0;} to{opacity:1;} }
 
 /* ========================================================
    SKY / MOON / STARS / MIST
@@ -69,12 +60,9 @@ body{
     position:absolute;
     top:60px;
     right:80px;
-
     width:130px;
     height:130px;
-
     border-radius:50%;
-
     background:radial-gradient(circle at 35% 30%,white,#e8f7ff 55%,#bdd9ef);
     box-shadow:0 0 60px rgba(255,255,255,.35);
 }
@@ -92,72 +80,45 @@ body{
     position:absolute;
     inset:0;
     pointer-events:none;
-
     background-image:
         radial-gradient(white 1px,transparent 1px),
         radial-gradient(white 1px,transparent 1px);
-    background-size:
-        170px 170px,
-        240px 240px;
-
+    background-size:170px 170px,240px 240px;
     animation:twinkle 6s linear infinite;
 }
 
-@keyframes twinkle{
-    0%,100%{opacity:.4;}
-    50%{opacity:1;}
-}
+@keyframes twinkle{ 0%,100%{opacity:.4;} 50%{opacity:1;} }
 
 .mist{
     position:absolute;
     bottom:0;
     width:100%;
     height:220px;
-
     background:linear-gradient(to top,rgba(255,255,255,.14),transparent);
     filter:blur(25px);
     pointer-events:none;
-
     animation:mistMove 18s linear infinite;
 }
 
-@keyframes mistMove{
-    0%,100%{transform:translateX(-8%);}
-    50%{transform:translateX(8%);}
-}
+@keyframes mistMove{ 0%,100%{transform:translateX(-8%);} 50%{transform:translateX(8%);} }
 
 /* ========================================================
    FIREFLIES
 ======================================================== */
 
-.fireflies{
-    position:absolute;
-    inset:0;
-    pointer-events:none;
-    overflow:hidden;
-}
+.fireflies{ position:absolute; inset:0; pointer-events:none; overflow:hidden; }
 
 .firefly{
     position:absolute;
     width:6px;
     height:6px;
     border-radius:50%;
-
     background:#fff7aa;
-    box-shadow:
-        0 0 8px #fff7aa,
-        0 0 18px #fff7aa,
-        0 0 35px rgba(255,247,170,.8);
-
-    animation:
-        floatFirefly linear infinite,
-        blink 2.5s ease-in-out infinite;
+    box-shadow:0 0 8px #fff7aa,0 0 18px #fff7aa,0 0 35px rgba(255,247,170,.8);
+    animation:floatFirefly linear infinite,blink 2.5s ease-in-out infinite;
 }
 
-@keyframes blink{
-    0%,100%{opacity:.2;}
-    50%{opacity:1;}
-}
+@keyframes blink{ 0%,100%{opacity:.2;} 50%{opacity:1;} }
 
 @keyframes floatFirefly{
     0%{transform:translate(0,0);}
@@ -176,325 +137,232 @@ body{
     top:45px;
     width:100%;
     text-align:center;
-
     font-size:3rem;
     letter-spacing:8px;
     color:white;
-
-    text-shadow:
-        0 0 10px white,
-        0 0 25px white,
-        0 0 60px #8dd8ff;
-
+    text-shadow:0 0 10px white,0 0 25px white,0 0 60px #8dd8ff;
     z-index:100;
 }
 
 /* ========================================================
-   GARDEN / FLOWER STRUCTURE
+   GARDEN / PLANT
 ======================================================== */
 
 .garden{
     position:relative;
     width:900px;
-    height:700px;
+    height:640px;
     max-width:100vw;
 }
 
-.flower{
+.plant{
     position:absolute;
     bottom:70px;
+    width:140px;
+    height:300px;
     transform-origin:bottom center;
 
     animation:
-        grow 2.2s ease backwards,
-        wind 5s ease-in-out infinite;
+        grow 1.8s ease backwards,
+        sway 6s ease-in-out infinite;
 }
 
-.flower-left{ left:120px; }
-.flower-center{ left:420px; animation-delay:.3s; }
-.flower-right{ left:700px; animation-delay:.6s; }
+.plant-left{ left:150px; }
+.plant-center{ left:390px; animation-delay:.3s; }
+.plant-right{ left:610px; animation-delay:.6s; }
 
 @keyframes grow{
-    from{opacity:0; transform:scaleY(0);}
-    to{opacity:1; transform:scaleY(1);}
+    from{ opacity:0; transform:scaleY(0); }
+    to{ opacity:1; transform:scaleY(1); }
 }
 
-@keyframes wind{
-    0%,100%{transform:rotate(-2deg);}
-    50%{transform:rotate(2deg);}
+@keyframes sway{
+    0%,100%{ transform:rotate(-1.5deg); }
+    50%{ transform:rotate(1.5deg); }
 }
 
-/* Main stem */
+/* the arching flower stem, drawn as an svg path so it can actually curve */
 
 .stem{
     position:absolute;
-    bottom:0;
-    left:50%;
-    width:10px;
-    height:340px;
-    margin-left:-5px;
-
-    border-radius:20px;
-
-    background:linear-gradient(to right,var(--stem-dark),var(--stem),var(--stem-dark));
-    box-shadow:0 0 15px rgba(90,255,120,.2);
-}
-
-/* Side branches the bells hang from */
-
-.branch{
-    position:absolute;
-    left:5px;
-    width:95px;
-    height:6px;
-
-    background:linear-gradient(to right,var(--stem-dark),var(--stem));
-    border-radius:20px;
-    transform-origin:left center;
-}
-
-.branch1{ bottom:320px; transform:rotate(-25deg); }
-.branch2{ bottom:280px; transform:rotate(-12deg); }
-.branch3{ bottom:235px; transform:rotate(6deg); }
-.branch4{ bottom:185px; transform:rotate(18deg); }
-
-/* ========================================================
-   BELLS  (generated by script.js)
-======================================================== */
-
-.bells{
-    position:absolute;
-    left:-15px;
-    bottom:140px;
-    width:100px;
-    height:210px;
-}
-
-/* the thin hanging stalk each bell dangles from */
-
-.bell-stem{
-    position:absolute;
-    width:2px;
-    height:26px;
-
-    background:linear-gradient(#9ef5a2,#4ea95b);
-    box-shadow:0 0 4px rgba(130,255,150,.3);
-    border-radius:10px;
-
-    transform-origin:top center;
-}
-
-/* the flower itself, hanging BELOW the stalk tip (this is the fix:
-   previously it had no offset and sat bunched at the pivot) */
-
-.bell{
-    position:absolute;
-    top:22px;
-    left:50%;
-    margin-left:-19px;
-
-    width:38px;
-    height:42px;
-
-    transform-origin:top center;
-
-    filter:drop-shadow(0 6px 8px rgba(0,0,0,.2));
-    transition:transform .4s,filter .4s;
-
-    /* only ONE animation ever touches `transform` (bellSwing);
-       bloom only touches opacity/filter, so they never fight */
-    animation:
-        bloom .7s ease backwards,
-        bellSwing 5s ease-in-out infinite;
-}
-
-.bell:hover{
-    filter:
-        drop-shadow(0 0 15px white)
-        drop-shadow(0 0 35px rgba(255,255,255,.8));
-}
-
-@keyframes bloom{
-    0%{ opacity:0; filter:blur(8px); }
-    100%{ opacity:1; filter:blur(0); }
-}
-
-@keyframes bellSwing{
-    0%,100%{ transform:rotate(-3deg) scale(var(--s,1)); }
-    50%{ transform:rotate(3deg) scale(var(--s,1)); }
-}
-
-/* small green cap connecting bell to its stalk */
-
-.bell::before{
-    content:"";
-    position:absolute;
-    left:13px;
-    top:-6px;
-    width:12px;
-    height:8px;
-
-    background:linear-gradient(var(--cap-light),var(--cap));
-    border-radius:50%;
-}
-
-/* the bell-shaped petal */
-
-.petal{
-    position:absolute;
     inset:0;
-
-    background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.95),white 45%,#eef5ef 70%,var(--petal-shadow));
-    border-radius:48% 48% 42% 42%;
-    overflow:hidden;
-
-    box-shadow:inset -2px -4px 6px rgba(0,0,0,.08);
+    width:100%;
+    height:100%;
+    overflow:visible;
 }
 
-.petal::before{
-    /* highlight */
-    content:"";
-    position:absolute;
-    left:8px;
-    top:5px;
-    width:12px;
-    height:18px;
-    border-radius:50%;
-    background:rgba(255,255,255,.65);
-    filter:blur(2px);
-}
-
-.petal::after{
-    /* soft shadow */
-    content:"";
-    position:absolute;
-    right:5px;
-    bottom:8px;
-    width:12px;
-    height:18px;
-    border-radius:50%;
-    background:rgba(160,160,160,.15);
-    filter:blur(4px);
-}
-
-.ridge{
-    position:absolute;
-    top:8px;
-    width:2px;
-    height:26px;
-    border-radius:50%;
-    background:rgba(255,255,255,.28);
-}
-
-.r1{ left:6px; }
-.r2{ left:14px; }
-.r3{ left:22px; }
-.r4{ left:30px; }
-
-.scallop{
-    position:absolute;
-    bottom:-2px;
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:white;
-    box-shadow:inset 0 -1px 1px rgba(0,0,0,.08);
-}
-
-.sc1{ left:0; }
-.sc2{ left:7px; }
-.sc3{ left:14px; }
-.sc4{ left:21px; }
-.sc5{ left:28px; }
-
-.center-hole{
-    position:absolute;
-    bottom:5px;
-    left:50%;
-    transform:translateX(-50%);
-
-    width:6px;
-    height:4px;
-    border-radius:50%;
-
-    background:#d4d8d4;
-    opacity:.65;
+.stem-path{
+    fill:none;
+    stroke:var(--stem);
+    stroke-width:3.5;
+    stroke-linecap:round;
+    filter:drop-shadow(0 0 4px rgba(90,255,120,.25));
 }
 
 /* ========================================================
-   LEAVES
+   LEAVES  — classic pointed lanceolate leaf silhouette
 ======================================================== */
 
 .leaf{
     position:absolute;
+    bottom:-10px;
+    left:12px;
 
-    background:linear-gradient(90deg,var(--leaf-dark),var(--leaf),#9af39f);
-    box-shadow:inset -8px 0 10px rgba(0,0,0,.08);
-    overflow:hidden;
+    width:100px;
+    height:220px;
 
+    background:linear-gradient(135deg,var(--leaf-light),var(--leaf) 55%,var(--leaf-dark));
+    border-radius:0% 100% 0% 100%;
+    box-shadow:inset -6px -6px 14px rgba(0,0,0,.15);
+
+    transform-origin:bottom center;
     animation:leafGlow 6s ease-in-out infinite;
 }
 
 .leaf::before{
+    /* midrib */
     content:"";
     position:absolute;
     left:50%;
-    top:0;
-    width:2px;
-    height:100%;
-    background:rgba(255,255,255,.35);
-}
-
-.leaf::after{
-    content:"";
-    position:absolute;
-    left:0;
-    top:45%;
-    width:100%;
-    height:2px;
-    background:rgba(255,255,255,.12);
-    transform:rotate(-8deg);
+    top:8%;
+    width:1.5px;
+    height:80%;
+    background:rgba(255,255,255,.3);
+    transform:translateX(-50%) rotate(4deg);
+    transform-origin:top;
 }
 
 @keyframes leafGlow{
     0%,100%{ filter:brightness(1); }
-    50%{ filter:brightness(1.12); }
+    50%{ filter:brightness(1.1); }
 }
 
-.leaf-left1{
-    width:95px;
-    height:230px;
-    left:-70px;
-    bottom:20px;
-    border-radius:100% 0;
-    transform:rotate(-25deg);
+.leaf-a{ transform:rotate(-24deg); z-index:2; }
+.leaf-b{ left:26px; transform:rotate(14deg) scaleX(-1); z-index:1; opacity:.95; }
+
+/* ========================================================
+   BELLS  (positioned by script.js along the stem path)
+======================================================== */
+
+.bells{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
 }
 
-.leaf-left2{
-    width:82px;
-    height:180px;
-    left:-55px;
-    bottom:90px;
-    border-radius:100% 0;
-    transform:rotate(-10deg);
+.bell-group{
+    position:absolute;
+    transform-origin:top center;
+    animation:bloom .6s ease backwards;
 }
 
-.leaf-right1{
-    width:95px;
-    height:220px;
-    left:8px;
-    bottom:30px;
-    border-radius:0 100%;
-    transform:rotate(18deg);
+/* pedicel — the short stalk each flower hangs from */
+
+.pedicel{
+    position:absolute;
+    top:0;
+    left:50%;
+    width:1.5px;
+    height:16px;
+    margin-left:-0.75px;
+    background:linear-gradient(var(--cap),var(--stem-dark));
+    transform-origin:top center;
 }
 
-.leaf-right2{
-    width:75px;
-    height:170px;
-    left:20px;
-    bottom:95px;
-    border-radius:0 100%;
-    transform:rotate(28deg);
+/* the bell itself: dome + flared rim, hangs mouth-down */
+
+.bell{
+    position:absolute;
+    top:16px;
+    left:50%;
+    margin-left:-7px;
+    width:14px;
+    height:15px;
+
+    animation:bellSwing 4.5s ease-in-out infinite;
+    transform-origin:top center;
+}
+
+@keyframes bloom{
+    0%{ opacity:0; filter:blur(4px); }
+    100%{ opacity:1; filter:blur(0); }
+}
+
+@keyframes bellSwing{
+    0%,100%{ transform:rotate(-4deg); }
+    50%{ transform:rotate(4deg); }
+}
+
+.dome{
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at 32% 22%,#ffffff,#fbfefc 55%,var(--petal-shadow));
+    border-radius:50% 50% 46% 46% / 62% 62% 38% 38%;
+    box-shadow:inset -1.5px -2px 3px rgba(0,0,0,.1);
+}
+
+.dome::before{
+    /* tiny green calyx nub where pedicel meets bell */
+    content:"";
+    position:absolute;
+    left:50%;
+    top:-3px;
+    width:5px;
+    height:4px;
+    transform:translateX(-50%);
+    background:var(--cap);
+    border-radius:50%;
+}
+
+/* the six small recurved lobes that flare out at the bell's mouth —
+   generated as individual elements in script.js so each can be angled
+   precisely around the rim */
+
+.lobe{
+    position:absolute;
+    width:4px;
+    height:5px;
+    background:radial-gradient(circle at 40% 30%,white,var(--petal-shadow));
+    border-radius:50% 50% 60% 60%;
+}
+
+/* a tiny dewdrop catching the moonlight on some bells */
+
+.dew{
+    position:absolute;
+    width:2px;
+    height:2px;
+    border-radius:50%;
+    background:radial-gradient(circle,#ffffff,rgba(210,235,255,.6));
+    box-shadow:
+        0 0 3px rgba(255,255,255,.9),
+        0 0 6px rgba(180,220,255,.7);
+    animation:dewGlisten 3.2s ease-in-out infinite;
+}
+
+@keyframes dewGlisten{
+    0%,100%{ opacity:.45; transform:scale(.7); }
+    50%{ opacity:1; transform:scale(1.3); }
+}
+
+/* ========================================================
+   BACKGROUND FLOWERS (depth)
+======================================================== */
+
+.bg-wrap{
+    position:absolute;
+    width:140px;
+    height:300px;
+    transform:scale(var(--bg-scale,0.4));
+    transform-origin:bottom center;
+    pointer-events:none;
+}
+
+.bg-plant{
+    inset:0;
+    opacity:.4;
+    filter:blur(1.4px) saturate(.6) brightness(.7);
 }
 
 /* ========================================================
@@ -505,8 +373,7 @@ body{
     position:absolute;
     bottom:0;
     width:100%;
-    height:120px;
-
+    height:110px;
     background:linear-gradient(to top,#0c3515,#174d24);
     overflow:hidden;
 }
@@ -516,12 +383,7 @@ body{
     position:absolute;
     inset:0;
     opacity:.25;
-
-    background:repeating-linear-gradient(
-        90deg,
-        transparent 0 6px,
-        rgba(255,255,255,.03) 6px 7px
-    );
+    background:repeating-linear-gradient(90deg,transparent 0 6px,rgba(255,255,255,.03) 6px 7px);
 }
 
 /* ========================================================
