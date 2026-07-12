@@ -12,7 +12,7 @@ window.onload = () => {
 // TYPEWRITER EFFECT
 // ==========================
 function typeMessage() {
-    const text = "FOR MY LILY OF THE VALLEY ❤️";
+    const text = "For my baby Lj";
     const title = document.getElementById("title");
     let i = 0;
     function type() {
