@@ -12,7 +12,7 @@ window.onload = () => {
 // TYPEWRITER EFFECT
 // ==========================
 function typeMessage() {
-    const text = "For my baby lj";
+    const text = "For my baby lJ";
     const title = document.getElementById("title");
     let i = 0;
     function type() {
