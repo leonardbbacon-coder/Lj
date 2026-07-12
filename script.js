@@ -10,15 +10,15 @@ window.onload = () => {
 
         createFireflies();
 
-    },1000);
+    }, 1000);
 
 };
 
 // ==========================
-// TYPEWRITER
+// TYPEWRITER EFFECT
 // ==========================
 
-function typeMessage(){
+function typeMessage() {
 
     const text = "FOR MY LILY OF THE VALLEY ❤️";
 
@@ -26,15 +26,15 @@ function typeMessage(){
 
     let i = 0;
 
-    function type(){
+    function type() {
 
-        if(i < text.length){
+        if (i < text.length) {
 
             title.innerHTML += text.charAt(i);
 
             i++;
 
-            setTimeout(type,140);
+            setTimeout(type, 140);
 
         }
 
@@ -45,16 +45,16 @@ function typeMessage(){
 }
 
 // ==========================
-// CREATE FLOWERS
+// CREATE LILY BELLS
 // ==========================
 
-function createBells(){
+function createBells() {
 
-    document.querySelectorAll(".bells").forEach(group=>{
+    document.querySelectorAll(".bells").forEach(group => {
 
         let y = 0;
 
-        for(let i=0;i<12;i++){
+        for (let i = 0; i < 12; i++) {
 
             const stem = document.createElement("div");
             stem.className = "bell-stem";
@@ -65,42 +65,49 @@ function createBells(){
             const petal = document.createElement("div");
             petal.className = "petal";
 
-            for(let j=1;j<=5;j++){
+            // Bottom scallops
+            for (let j = 1; j <= 5; j++) {
 
-                const s=document.createElement("div");
+                const scallop = document.createElement("div");
+                scallop.className = "scallop sc" + j;
 
-                s.className="scallop sc"+j;
-
-                petal.appendChild(s);
+                petal.appendChild(scallop);
 
             }
 
-            const hole=document.createElement("div");
+            // Petal ridges
+            for (let k = 1; k <= 4; k++) {
 
-            hole.className="center-hole";
+                const ridge = document.createElement("div");
+                ridge.className = "ridge r" + k;
+
+                petal.appendChild(ridge);
+
+            }
+
+            // Flower opening
+            const hole = document.createElement("div");
+            hole.className = "center-hole";
 
             petal.appendChild(hole);
 
             bell.appendChild(petal);
-
             stem.appendChild(bell);
 
-            // Random placement
+            // Positioning
+            y += 18 + Math.random() * 8;
 
-            y += 18 + Math.random()*8;
-
-            stem.style.top = y+"px";
-
-            stem.style.left = (i*11)+"px";
+            stem.style.top = y + "px";
+            stem.style.left = (i * 11) + "px";
 
             stem.style.transform =
-            `rotate(${25-Math.random()*55}deg)`;
+                `rotate(${25 - Math.random() * 55}deg)`;
 
             bell.style.animationDelay =
-            (1+i*.12)+"s";
+                (1 + i * 0.12) + "s";
 
             bell.style.transform =
-            `scale(${0.88+Math.random()*0.3})`;
+                `scale(${0.88 + Math.random() * 0.3})`;
 
             group.appendChild(stem);
 
@@ -111,28 +118,27 @@ function createBells(){
 }
 
 // ==========================
-// FIREFLIES
+// CREATE FIREFLIES
 // ==========================
 
-function createFireflies(){
+function createFireflies() {
 
-    const container=document.querySelector(".fireflies");
+    const container = document.querySelector(".fireflies");
 
-    for(let i=0;i<45;i++){
+    for (let i = 0; i < 45; i++) {
 
-        const fly=document.createElement("span");
+        const fly = document.createElement("span");
 
-        fly.className="firefly";
+        fly.className = "firefly";
 
-        fly.style.left=Math.random()*100+"vw";
+        fly.style.left = Math.random() * 100 + "vw";
+        fly.style.top = Math.random() * 100 + "vh";
 
-        fly.style.top=Math.random()*100+"vh";
+        fly.style.animationDuration =
+            (6 + Math.random() * 7) + "s";
 
-        fly.style.animationDuration=
-        (6+Math.random()*7)+"s";
-
-        fly.style.animationDelay=
-        Math.random()*5+"s";
+        fly.style.animationDelay =
+            Math.random() * 5 + "s";
 
         container.appendChild(fly);
 
