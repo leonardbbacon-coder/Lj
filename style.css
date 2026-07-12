@@ -1,1941 +1,540 @@
-/* ========= RESET ========= */
+/* ========================================================
+   RESET
+======================================================== */
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 :root{
+    --sky1:#020712;
+    --sky2:#08182d;
 
---sky1:#020712;
---sky2:#08182d;
+    --stem:#3e914d;
+    --stem-dark:#255e34;
 
---grass:#0b3215;
---stem:#3e914d;
---stem-dark:#255e34;
+    --leaf:#5ec96c;
+    --leaf-dark:#256b2e;
 
---leaf:#5ec96c;
---leaf-dark:#2f803d;
+    --petal:#ffffff;
+    --petal-shadow:#d7ddd8;
 
---petal:#ffffff;
---petal-shadow:#dce8df;
+    --cap:#4f9f56;
+    --cap-light:#86db89;
+}
 
+html,body{
+    width:100%;
+    height:100%;
 }
 
 body{
+    position:relative;
+    overflow:hidden;
 
-width:100vw;
-height:100vh;
+    background:radial-gradient(circle at top,#16355f,var(--sky1) 70%);
 
-overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
 
-background:
-radial-gradient(circle at top,#16355f,#020712 70%);
+    font-family:Georgia,serif;
 
-display:flex;
-justify-content:center;
-align-items:flex-end;
-
-font-family:Georgia,serif;
-
+    animation:fade 2s ease;
 }
 
 .not-loaded *{
-animation-play-state:paused!important;
+    animation-play-state:paused!important;
 }
 
-/* ========= TITLE ========= */
-
-#title{
-
-position:absolute;
-
-top:45px;
-
-width:100%;
-
-text-align:center;
-
-font-size:3rem;
-
-letter-spacing:8px;
-
-color:white;
-
-text-shadow:
-
-0 0 10px white,
-0 0 25px white,
-0 0 60px #8dd8ff;
-
-z-index:100;
-
+@keyframes fade{
+    from{opacity:0;}
+    to{opacity:1;}
 }
 
-/* ========= MOON ========= */
+/* ========================================================
+   SKY / MOON / STARS / MIST
+======================================================== */
+
+.sky{
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at 50% -20%,rgba(120,180,255,.25),transparent 60%);
+    pointer-events:none;
+}
 
 .moon{
-
-position:absolute;
-
-top:60px;
-right:80px;
-
-width:130px;
-height:130px;
-
-border-radius:50%;
-
-background:
-
-radial-gradient(circle at 35% 30%,
-white,
-#e8f7ff 55%,
-#bdd9ef);
-
-box-shadow:
-
-0 0 60px rgba(255,255,255,.35);
-
-}
-
-/* ========= STARS ========= */
-
-.stars{
-
-position:absolute;
-
-inset:0;
-
-background-image:
-
-radial-gradient(white 1px,transparent 1px),
-radial-gradient(white 1px,transparent 1px);
-
-background-size:
-
-170px 170px,
-240px 240px;
-
-animation:twinkle 6s linear infinite;
-
-}
-
-@keyframes twinkle{
-
-0%,100%{
-opacity:.45;
-}
-
-50%{
-opacity:1;
-}
-
-}
-
-/* ========= MIST ========= */
-
-.mist{
-
-position:absolute;
-
-bottom:0;
-
-width:100%;
-
-height:220px;
-
-background:
-
-linear-gradient(
-
-to top,
-
-rgba(255,255,255,.14),
-
-transparent
-
-);
-
-filter:blur(25px);
-
-}
-
-/* ========= GARDEN ========= */
-
-.garden{
-
-position:relative;
-
-width:900px;
-
-height:700px;
-
-}
-
-/* ========= FLOWERS ========= */
-
-.flower{
-
-position:absolute;
-
-bottom:70px;
-
-transform-origin:bottom center;
-
-animation:
-
-grow 2.2s ease backwards,
-wind 5s ease-in-out infinite;
-
-}
-
-.flower-left{
-
-left:120px;
-
-}
-
-.flower-center{
-
-left:420px;
-
-}
-
-.flower-right{
-
-left:700px;
-
-}
-
-/* ========= STEM ========= */
-
-.stem{
-
-position:absolute;
-
-bottom:0;
-
-left:50%;
-
-width:12px;
-
-height:390px;
-
-border-radius:20px;
-
-background:
-
-linear-gradient(
-
-to right,
-
-var(--stem-dark),
-
-var(--stem),
-
-var(--stem-dark)
-
-);
-
-}
-
-/* ========= BRANCHES ========= */
-
-.branch{
-
-position:absolute;
-
-width:95px;
-
-height:6px;
-
-background:
-
-linear-gradient(
-
-to right,
-
-var(--stem-dark),
-
-var(--stem)
-
-);
-
-transform-origin:left center;
-
-border-radius:20px;
-
-}
-
-.branch1{
-
-left:6px;
-bottom:320px;
-
-transform:rotate(-25deg);
-
-}
-
-.branch2{
-
-left:8px;
-bottom:280px;
-
-transform:rotate(-12deg);
-
-}
-
-.branch3{
-
-left:8px;
-bottom:235px;
-
-transform:rotate(6deg);
-
-}
-
-.branch4{
-
-left:8px;
-bottom:185px;
-
-transform:rotate(18deg);
-
-}    font-size:42px;
-    letter-spacing:5px;
-    text-shadow:
-        0 0 10px white,
-        0 0 25px white;
-    z-index:500;
-}
-
-.night{
     position:absolute;
-    inset:0;
-    background:
-    radial-gradient(circle at 50% -20%,rgba(120,180,255,.25),transparent 60%);
+    top:60px;
+    right:80px;
+
+    width:130px;
+    height:130px;
+
+    border-radius:50%;
+
+    background:radial-gradient(circle at 35% 30%,white,#e8f7ff 55%,#bdd9ef);
+    box-shadow:0 0 60px rgba(255,255,255,.35);
 }
 
-/* Stars */
+.moon::after{
+    content:"";
+    position:absolute;
+    inset:-60px;
+    border-radius:50%;
+    background:radial-gradient(rgba(210,240,255,.18),transparent 70%);
+    filter:blur(35px);
+}
 
 .stars{
     position:absolute;
     inset:0;
+    pointer-events:none;
+
     background-image:
-    radial-gradient(white 1px,transparent 1px),
-    radial-gradient(white 1px,transparent 1px),
-    radial-gradient(white 1px,transparent 1px);
-
+        radial-gradient(white 1px,transparent 1px),
+        radial-gradient(white 1px,transparent 1px);
     background-size:
-    180px 180px,
-    250px 250px,
-    320px 320px;
+        170px 170px,
+        240px 240px;
 
     animation:twinkle 6s linear infinite;
 }
 
 @keyframes twinkle{
-
-0%,100%{
-opacity:.4;
+    0%,100%{opacity:.4;}
+    50%{opacity:1;}
 }
-
-50%{
-opacity:1;
-}
-
-}
-
-/* Fireflies */
-
-.fireflies span{
-
-position:absolute;
-
-width:7px;
-height:7px;
-
-background:#fffaa0;
-
-border-radius:50%;
-
-box-shadow:
-0 0 15px #fff799,
-0 0 30px #fff799;
-
-animation:fly 8s linear infinite;
-
-}
-
-.fireflies span:nth-child(1){
-
-left:15%;
-bottom:15%;
-animation-delay:0s;
-
-}
-
-.fireflies span:nth-child(2){
-
-left:80%;
-bottom:20%;
-animation-delay:1s;
-
-}
-
-.fireflies span:nth-child(3){
-
-left:35%;
-bottom:10%;
-animation-delay:2s;
-
-}
-
-.fireflies span:nth-child(4){
-
-left:60%;
-bottom:18%;
-animation-delay:3s;
-
-}
-
-.fireflies span:nth-child(5){
-
-left:10%;
-bottom:30%;
-animation-delay:4s;
-
-}
-
-.fireflies span:nth-child(6){
-
-left:90%;
-bottom:35%;
-animation-delay:5s;
-
-}
-
-.fireflies span:nth-child(7){
-
-left:45%;
-bottom:25%;
-animation-delay:6s;
-
-}
-
-.fireflies span:nth-child(8){
-
-left:70%;
-bottom:12%;
-animation-delay:7s;
-
-}
-
-@keyframes fly{
-
-0%{
-
-transform:
-translateY(0)
-translateX(0);
-
-opacity:0;
-
-}
-
-20%{
-
-opacity:1;
-
-}
-
-50%{
-
-transform:
-translateY(-180px)
-translateX(60px);
-
-}
-
-100%{
-
-transform:
-translateY(-350px)
-translateX(-40px);
-
-opacity:0;
-
-}
-
-}
-
-/* Ground */
-
-.ground{
-
-position:absolute;
-
-bottom:0;
-
-width:100%;
-
-height:120px;
-
-background:
-linear-gradient(
-to top,
-#163d1d,
-#0d2211
-);
-
-}
-
-/* Flowers */
-
-.flowers{
-
-position:relative;
-
-width:700px;
-
-height:700px;
-
-}
-
-.lily{
-
-position:absolute;
-
-bottom:70px;
-
-animation:
-grow 2.2s ease backwards,
-sway 5s ease-in-out infinite;
-
-transform-origin:bottom;
-
-}
-
-.lily-left{
-
-left:110px;
-
-animation-delay:.2s;
-
-}
-
-.lily-center{
-
-left:310px;
-
-animation-delay:.6s;
-
-}
-
-.lily-right{
-
-left:520px;
-
-animation-delay:1s;
-
-}
-
-@keyframes grow{
-
-from{
-
-transform:
-scaleY(0);
-
-opacity:0;
-
-}
-
-to{
-
-transform:
-scaleY(1);
-
-opacity:1;
-
-}
-
-}
-
-@keyframes sway{
-
-0%,100%{
-
-transform:
-rotate(-2deg);
-
-}
-
-50%{
-
-transform:
-rotate(2deg);
-
-}
-
-}
-
-/* Stem */
-
-.stem{
-
-position:absolute;
-
-bottom:0;
-
-left:50%;
-
-width:10px;
-
-height:340px;
-
-background:
-
-linear-gradient(
-
-to right,
-
-#2d6d36,
-
-#66d36d,
-
-#2d6d36
-
-);
-
-border-radius:20px;
-
-}
-
-/* Leaves */
-
-.leaf{
-
-position:absolute;
-
-background:
-
-linear-gradient(
-
-to right,
-
-#256b2e,
-
-#6de96b
-
-);
-
-box-shadow:
-
-0 0 20px rgba(60,255,90,.15);
-
-}
-
-.leaf1{
-
-width:85px;
-
-height:170px;
-
-left:-75px;
-
-bottom:20px;
-
-border-radius:100% 0;
-
-transform:
-
-rotate(-35deg);
-
-}
-
-.leaf2{
-
-width:80px;
-
-height:160px;
-
-left:15px;
-
-bottom:90px;
-
-border-radius:0 100%;
-
-transform:
-
-rotate(25deg);
-
-}
-
-.leaf3{
-
-width:65px;
-
-height:120px;
-
-left:-55px;
-
-bottom:180px;
-
-border-radius:100% 0;
-
-transform:
-
-rotate(-20deg);
-
-}
-/* ==========================
-   LILY BELLS
-========================== */
-
-.bells{
-    position:absolute;
-    left:5px;
-    bottom:230px;
-    width:140px;
-    height:170px;
-}
-
-.bell{
-    position:absolute;
-    width:30px;
-    height:34px;
-    background:linear-gradient(to bottom,#ffffff,#f1f7f5);
-    border-radius:50% 50% 40% 40%;
-    box-shadow:
-        0 0 10px rgba(255,255,255,.5),
-        inset -2px -3px 6px rgba(0,0,0,.08);
-    transform-origin:top center;
-    animation:bloom .8s ease backwards;
-}
-
-.bell::before{
-    content:"";
-    position:absolute;
-    width:2px;
-    height:20px;
-    background:#57b35d;
-    top:-18px;
-    left:50%;
-    transform:translateX(-50%);
-}
-
-.bell::after{
-    content:"";
-    position:absolute;
-    left:50%;
-    bottom:-4px;
-    transform:translateX(-50%);
-    width:18px;
-    height:8px;
-    border-bottom:2px solid #e9e9e9;
-    border-radius:0 0 50% 50%;
-}
-
-/* Bell Positions */
-
-.bell1{
-    left:0;
-    top:0;
-    transform:rotate(30deg);
-    animation-delay:1.0s;
-}
-
-.bell2{
-    left:18px;
-    top:25px;
-    transform:rotate(20deg);
-    animation-delay:1.2s;
-}
-
-.bell3{
-    left:42px;
-    top:48px;
-    transform:rotate(8deg);
-    animation-delay:1.4s;
-}
-
-.bell4{
-    left:72px;
-    top:70px;
-    transform:rotate(-10deg);
-    animation-delay:1.6s;
-}
-
-.bell5{
-    left:92px;
-    top:96px;
-    transform:rotate(-20deg);
-    animation-delay:1.8s;
-}
-
-.bell6{
-    left:106px;
-    top:122px;
-    transform:rotate(-28deg);
-    animation-delay:2s;
-}
-
-.bell7{
-    left:118px;
-    top:145px;
-    transform:rotate(-36deg);
-    animation-delay:2.2s;
-}
-
-/* Petal */
-
-.petal{
-    position:absolute;
-    inset:0;
-    border-radius:inherit;
-    background:
-    radial-gradient(circle at 40% 30%,
-    rgba(255,255,255,.9),
-    transparent 55%);
-}
-
-/* Bloom */
-
-@keyframes bloom{
-
-0%{
-transform:scale(.1) rotate(0deg);
-opacity:0;
-filter:blur(12px);
-}
-
-100%{
-opacity:1;
-filter:blur(0);
-}
-
-}
-
-/* Floating */
-
-.bell{
-animation:
-bloom .8s backwards,
-bellFloat 4s ease-in-out infinite;
-}
-
-@keyframes bellFloat{
-
-0%,100%{
-transform:translateY(0) rotate(0deg);
-}
-
-50%{
-transform:translateY(-3px) rotate(2deg);
-}
-
-}
-
-/* Glow */
-
-.bell:hover{
-
-box-shadow:
-0 0 25px white,
-0 0 45px rgba(255,255,255,.8);
-
-}
-
-/* Whole flower sway */
-
-.lily:nth-child(1){
-animation-duration:5s;
-}
-
-.lily:nth-child(2){
-animation-duration:6s;
-}
-
-.lily:nth-child(3){
-animation-duration:5.5s;
-}
-
-/* Fade in */
-
-body{
-animation:fade 2s;
-}
-
-@keyframes fade{
-
-from{
-opacity:0;
-}
-
-to{
-opacity:1;
-}
-
-}
-
-/* Responsive */
-
-@media(max-width:768px){
-
-.flowers{
-transform:scale(.72);
-}
-
-.title{
-font-size:28px;
-}
-
-}
-
-@media(max-width:500px){
-
-.flowers{
-transform:scale(.55);
-}
-
-.title{
-font-size:22px;
-letter-spacing:2px;
-}
-
-}
-/* ==========================================
-   LILY OF THE VALLEY BELLS
-========================================== */
-
-.bells{
-    position:absolute;
-    left:15px;
-    bottom:170px;
-    width:170px;
-    height:240px;
-}
-
-/* Individual hanging stems */
-
-.bell-stem{
-    position:absolute;
-    width:3px;
-    height:34px;
-    background:linear-gradient(#74d67d,#3e914d);
-    border-radius:10px;
-    transform-origin:top;
-}
-
-/* Bell */
-
-.bell{
-
-    position:absolute;
-
-    width:34px;
-    height:36px;
-
-    transform-origin:top center;
-
-    animation:
-
-    bloom .7s backwards,
-    swing 5s ease-in-out infinite;
-
-}
-
-/* Top cap */
-
-.bell::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:11px;
-    top:-5px;
-
-    width:12px;
-    height:8px;
-
-    background:#69c96d;
-
-    border-radius:50%;
-
-}
-
-/* Main flower */
-
-.petal{
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-
-    radial-gradient(circle at 30% 25%,
-
-    white,
-
-    #fafafa 45%,
-
-    #dfe7df 90%);
-
-    border-radius:
-
-    48% 48% 42% 42%;
-
-    overflow:hidden;
-
-    box-shadow:
-
-    inset -2px -4px 6px rgba(0,0,0,.08),
-
-    0 0 8px rgba(255,255,255,.35);
-
-}
-
-/* Moon highlight */
-
-.petal::before{
-
-content:"";
-
-position:absolute;
-
-left:7px;
-top:5px;
-
-width:12px;
-height:16px;
-
-background:
-
-rgba(255,255,255,.55);
-
-border-radius:50%;
-
-filter:blur(2px);
-
-}
-
-/* Bottom scallops */
-
-.scallop{
-
-position:absolute;
-
-bottom:-2px;
-
-width:8px;
-height:8px;
-
-background:white;
-
-border-radius:50%;
-
-box-shadow:
-
-0 -1px 0 #dce4de;
-
-}
-
-.sc1{left:1px;}
-.sc2{left:7px;}
-.sc3{left:13px;}
-.sc4{left:19px;}
-.sc5{left:25px;}
-
-/* Tiny opening */
-
-.center-hole{
-
-position:absolute;
-
-bottom:4px;
-left:50%;
-
-transform:translateX(-50%);
-
-width:6px;
-height:3px;
-
-border-radius:50%;
-
-background:#d8ddd7;
-
-opacity:.65;
-
-}
-
-/* ===================================
-   LEAVES
-=================================== */
-
-.leaf{
-
-position:absolute;
-
-background:
-
-linear-gradient(
-
-90deg,
-
-var(--leaf-dark),
-
-var(--leaf),
-
-#9af39f
-
-);
-
-box-shadow:
-
-inset -8px 0 10px rgba(0,0,0,.08);
-
-overflow:hidden;
-
-}
-
-/* Leaf veins */
-
-.leaf::before{
-
-content:"";
-
-position:absolute;
-
-left:50%;
-
-top:0;
-
-width:2px;
-
-height:100%;
-
-background:
-
-rgba(255,255,255,.35);
-
-}
-
-.leaf::after{
-
-content:"";
-
-position:absolute;
-
-left:0;
-
-top:45%;
-
-width:100%;
-
-height:2px;
-
-background:
-
-rgba(255,255,255,.12);
-
-transform:rotate(-8deg);
-
-}
-
-.leaf-left1{
-
-width:95px;
-height:230px;
-
-left:-70px;
-bottom:20px;
-
-border-radius:100% 0;
-
-transform:rotate(-25deg);
-
-}
-
-.leaf-left2{
-
-width:82px;
-height:180px;
-
-left:-55px;
-bottom:90px;
-
-border-radius:100% 0;
-
-transform:rotate(-10deg);
-
-}
-
-.leaf-right1{
-
-width:95px;
-height:220px;
-
-left:8px;
-bottom:30px;
-
-border-radius:0 100%;
-
-transform:rotate(18deg);
-
-}
-
-.leaf-right2{
-
-width:75px;
-height:170px;
-
-left:20px;
-bottom:95px;
-
-border-radius:0 100%;
-
-transform:rotate(28deg);
-
-}
-
-/* ===================================
-   ANIMATIONS
-=================================== */
-
-@keyframes bloom{
-
-0%{
-
-opacity:0;
-
-transform:
-
-scale(.15)
-
-rotate(-20deg);
-
-filter:blur(8px);
-
-}
-
-100%{
-
-opacity:1;
-
-filter:blur(0);
-
-}
-
-}
-
-@keyframes swing{
-
-0%,100%{
-
-transform:
-
-rotate(-3deg);
-
-}
-
-50%{
-
-transform:
-
-rotate(3deg);
-
-}
-
-}
-
-@keyframes wind{
-
-0%,100%{
-
-transform:rotate(-2deg);
-
-}
-
-50%{
-
-transform:rotate(2deg);
-
-}
-
-}
-
-@keyframes grow{
-
-from{
-
-opacity:0;
-
-transform:
-
-scaleY(0);
-
-}
-
-to{
-
-opacity:1;
-
-transform:
-
-scaleY(1);
-
-}
-
-}
-/* =====================================
-   PREMIUM NIGHT GARDEN
-===================================== */
-
-/* Fireflies */
-
-.fireflies{
-
-position:absolute;
-
-inset:0;
-
-pointer-events:none;
-
-overflow:hidden;
-
-}
-
-.firefly{
-
-position:absolute;
-
-width:6px;
-height:6px;
-
-border-radius:50%;
-
-background:#fff7aa;
-
-box-shadow:
-0 0 8px #fff7aa,
-0 0 18px #fff7aa,
-0 0 35px rgba(255,247,170,.8);
-
-animation:
-floatFirefly linear infinite,
-blink 2.5s ease-in-out infinite;
-
-}
-
-@keyframes blink{
-
-0%,100%{
-opacity:.2;
-}
-
-50%{
-opacity:1;
-}
-
-}
-
-@keyframes floatFirefly{
-
-0%{
-transform:
-translate(0,0);
-}
-
-25%{
-transform:
-translate(35px,-60px);
-}
-
-50%{
-transform:
-translate(-20px,-110px);
-}
-
-75%{
-transform:
-translate(30px,-160px);
-}
-
-100%{
-transform:
-translate(0,-220px);
-}
-
-}
-
-/* ===========================
-   MOVING FOG
-=========================== */
 
 .mist{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:220px;
 
-animation:
-mistMove 18s linear infinite;
+    background:linear-gradient(to top,rgba(255,255,255,.14),transparent);
+    filter:blur(25px);
+    pointer-events:none;
 
+    animation:mistMove 18s linear infinite;
 }
 
 @keyframes mistMove{
-
-0%{
-
-transform:
-translateX(-8%);
-
+    0%,100%{transform:translateX(-8%);}
+    50%{transform:translateX(8%);}
 }
 
-50%{
+/* ========================================================
+   FIREFLIES
+======================================================== */
 
-transform:
-translateX(8%);
-
+.fireflies{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
 }
 
-100%{
+.firefly{
+    position:absolute;
+    width:6px;
+    height:6px;
+    border-radius:50%;
 
-transform:
-translateX(-8%);
+    background:#fff7aa;
+    box-shadow:
+        0 0 8px #fff7aa,
+        0 0 18px #fff7aa,
+        0 0 35px rgba(255,247,170,.8);
 
+    animation:
+        floatFirefly linear infinite,
+        blink 2.5s ease-in-out infinite;
 }
 
+@keyframes blink{
+    0%,100%{opacity:.2;}
+    50%{opacity:1;}
 }
 
-/* ===========================
-   MOON GLOW
-=========================== */
-
-.moon::after{
-
-content:"";
-
-position:absolute;
-
-inset:-60px;
-
-border-radius:50%;
-
-background:
-
-radial-gradient(
-
-rgba(210,240,255,.18),
-
-transparent 70%
-
-);
-
-filter:blur(35px);
-
+@keyframes floatFirefly{
+    0%{transform:translate(0,0);}
+    25%{transform:translate(35px,-60px);}
+    50%{transform:translate(-20px,-110px);}
+    75%{transform:translate(30px,-160px);}
+    100%{transform:translate(0,-220px);}
 }
 
-/* ===========================
-   SHOOTING STAR
-=========================== */
+/* ========================================================
+   TITLE
+======================================================== */
 
-.shooting-star{
+#title{
+    position:absolute;
+    top:45px;
+    width:100%;
+    text-align:center;
 
-position:absolute;
+    font-size:3rem;
+    letter-spacing:8px;
+    color:white;
 
-width:160px;
-height:2px;
+    text-shadow:
+        0 0 10px white,
+        0 0 25px white,
+        0 0 60px #8dd8ff;
 
-background:
-
-linear-gradient(
-
-90deg,
-
-white,
-
-transparent
-
-);
-
-transform:
-
-rotate(-35deg);
-
-animation:
-
-shoot 10s linear infinite;
-
-opacity:0;
-
+    z-index:100;
 }
 
-@keyframes shoot{
+/* ========================================================
+   GARDEN / FLOWER STRUCTURE
+======================================================== */
 
-0%{
-
-left:-250px;
-top:120px;
-opacity:0;
-
+.garden{
+    position:relative;
+    width:900px;
+    height:700px;
+    max-width:100vw;
 }
 
-10%{
+.flower{
+    position:absolute;
+    bottom:70px;
+    transform-origin:bottom center;
 
-opacity:1;
-
+    animation:
+        grow 2.2s ease backwards,
+        wind 5s ease-in-out infinite;
 }
 
-30%{
+.flower-left{ left:120px; }
+.flower-center{ left:420px; animation-delay:.3s; }
+.flower-right{ left:700px; animation-delay:.6s; }
 
-left:120%;
-
-top:260px;
-
-opacity:0;
-
+@keyframes grow{
+    from{opacity:0; transform:scaleY(0);}
+    to{opacity:1; transform:scaleY(1);}
 }
 
-100%{
-
-opacity:0;
-
+@keyframes wind{
+    0%,100%{transform:rotate(-2deg);}
+    50%{transform:rotate(2deg);}
 }
 
-}
-
-/* ===========================
-   FLOATING POLLEN
-=========================== */
-
-.pollen{
-
-position:absolute;
-
-width:3px;
-height:3px;
-
-border-radius:50%;
-
-background:white;
-
-opacity:.5;
-
-animation:
-
-pollenFloat linear infinite;
-
-}
-
-@keyframes pollenFloat{
-
-0%{
-
-transform:
-
-translateY(0);
-
-opacity:0;
-
-}
-
-20%{
-
-opacity:.5;
-
-}
-
-100%{
-
-transform:
-
-translateY(-320px);
-
-opacity:0;
-
-}
-
-}
-
-/* ===========================
-   BETTER STEM
-=========================== */
+/* Main stem */
 
 .stem{
+    position:absolute;
+    bottom:0;
+    left:50%;
+    width:10px;
+    height:340px;
+    margin-left:-5px;
 
-box-shadow:
+    border-radius:20px;
 
-0 0 15px rgba(90,255,120,.2);
-
+    background:linear-gradient(to right,var(--stem-dark),var(--stem),var(--stem-dark));
+    box-shadow:0 0 15px rgba(90,255,120,.2);
 }
 
-/* ===========================
-   LEAF SHIMMER
-=========================== */
+/* Side branches the bells hang from */
 
-.leaf{
+.branch{
+    position:absolute;
+    left:5px;
+    width:95px;
+    height:6px;
 
-animation:
-
-leafGlow 6s ease-in-out infinite;
-
+    background:linear-gradient(to right,var(--stem-dark),var(--stem));
+    border-radius:20px;
+    transform-origin:left center;
 }
 
-@keyframes leafGlow{
+.branch1{ bottom:320px; transform:rotate(-25deg); }
+.branch2{ bottom:280px; transform:rotate(-12deg); }
+.branch3{ bottom:235px; transform:rotate(6deg); }
+.branch4{ bottom:185px; transform:rotate(18deg); }
 
-0%,100%{
+/* ========================================================
+   BELLS  (generated by script.js)
+======================================================== */
 
-filter:brightness(1);
-
+.bells{
+    position:absolute;
+    left:-15px;
+    bottom:140px;
+    width:100px;
+    height:210px;
 }
 
-50%{
-
-filter:brightness(1.12);
-
-}
-
-}
-
-/* ===========================
-   BELL SHADOWS
-=========================== */
-
-.bell{
-
-filter:
-
-drop-shadow(0 6px 8px rgba(0,0,0,.2));
-
-transition:
-
-transform .4s,
-
-filter .4s;
-
-}
-
-.bell:hover{
-
-transform:
-
-scale(1.12);
-
-filter:
-
-drop-shadow(0 0 12px white)
-drop-shadow(0 0 25px rgba(255,255,255,.8));
-
-}
-
-/* ===========================
-   GRASS
-=========================== */
-
-.grass{
-
-position:absolute;
-
-bottom:0;
-
-width:100%;
-
-height:120px;
-
-background:
-
-linear-gradient(
-
-to top,
-
-#0c3515,
-
-#174d24
-
-);
-
-overflow:hidden;
-
-}
-
-.grass::before{
-
-content:"";
-
-position:absolute;
-
-inset:0;
-
-background:
-
-repeating-linear-gradient(
-
-90deg,
-
-transparent 0 6px,
-
-rgba(255,255,255,.03) 6px 7px
-
-);
-
-opacity:.25;
-
-}
-/* ===========================================
-      ULTRA DETAILED LILY OF THE VALLEY
-===========================================*/
-
-/* Hanging stem */
+/* the thin hanging stalk each bell dangles from */
 
 .bell-stem{
-
+    position:absolute;
     width:2px;
+    height:26px;
 
-    background:
-    linear-gradient(
-    #9ef5a2,
-    #4ea95b
-    );
+    background:linear-gradient(#9ef5a2,#4ea95b);
+    box-shadow:0 0 4px rgba(130,255,150,.3);
+    border-radius:10px;
 
-    box-shadow:
-    0 0 4px rgba(130,255,150,.3);
-
+    transform-origin:top center;
 }
 
-/* Bell */
+/* the flower itself, hanging BELOW the stalk tip (this is the fix:
+   previously it had no offset and sat bunched at the pivot) */
 
 .bell{
+    position:absolute;
+    top:22px;
+    left:50%;
+    margin-left:-19px;
 
     width:38px;
     height:42px;
 
     transform-origin:top center;
 
-}
-
-/* Main bell */
-
-.petal{
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-
-    radial-gradient(
-
-        circle at 30% 25%,
-
-        rgba(255,255,255,.95),
-
-        white 45%,
-
-        #eef5ef 70%,
-
-        #d7ddd8
-
-    );
-
-    border-radius:
-
-        48% 48% 42% 42%;
-
-    overflow:hidden;
-
-}
-
-/* Moon highlight */
-
-.petal::before{
-
-content:"";
-
-position:absolute;
-
-left:8px;
-top:5px;
-
-width:12px;
-height:18px;
-
-border-radius:50%;
-
-background:
-
-rgba(255,255,255,.65);
-
-filter:blur(2px);
-
-}
-
-/* Soft shadow */
-
-.petal::after{
-
-content:"";
-
-position:absolute;
-
-right:5px;
-bottom:8px;
-
-width:12px;
-height:18px;
-
-background:
-
-rgba(180,180,180,.12);
-
-border-radius:50%;
-
-filter:blur(4px);
-
-}
-
-/* Green cap */
-
-.bell::before{
-
-content:"";
-
-position:absolute;
-
-left:11px;
-top:-7px;
-
-width:16px;
-height:10px;
-
-background:
-
-linear-gradient(
-
-#86db89,
-
-#4f9f56
-
-);
-
-border-radius:
-
-50%;
-
-}
-
-/* Bottom scallops */
-
-.scallop{
-
-width:8px;
-height:8px;
-
-background:white;
-
-border-radius:50%;
-
-bottom:-2px;
-
-box-shadow:
-
-inset 0 -1px 1px rgba(0,0,0,.08);
-
-}
-
-/* Decorative ridges */
-
-.petal .ridge{
-
-position:absolute;
-
-top:8px;
-
-width:2px;
-
-height:26px;
-
-background:
-
-rgba(255,255,255,.28);
-
-border-radius:50%;
-
-}
-
-.r1{left:8px;}
-.r2{left:15px;}
-.r3{left:22px;}
-.r4{left:29px;}
-
-/* Tiny pollen opening */
-
-.center-hole{
-
-width:6px;
-height:4px;
-
-background:#d4d8d4;
-
-border-radius:50%;
-
-bottom:5px;
-
-}
-
-/* Glow */
-
-.bell{
-
-transition:.5s;
-
+    filter:drop-shadow(0 6px 8px rgba(0,0,0,.2));
+    transition:transform .4s,filter .4s;
+
+    /* only ONE animation ever touches `transform` (bellSwing);
+       bloom only touches opacity/filter, so they never fight */
+    animation:
+        bloom .7s ease backwards,
+        bellSwing 5s ease-in-out infinite;
 }
 
 .bell:hover{
-
-transform:
-
-scale(1.08)
-
-rotate(2deg);
-
-filter:
-
-drop-shadow(0 0 15px white)
-
-drop-shadow(0 0 35px rgba(255,255,255,.8));
-
+    filter:
+        drop-shadow(0 0 15px white)
+        drop-shadow(0 0 35px rgba(255,255,255,.8));
 }
 
-/* Swing */
-
-.bell{
-
-animation:
-
-bloom .8s backwards,
-
-bellSwing 5s ease-in-out infinite;
-
+@keyframes bloom{
+    0%{ opacity:0; filter:blur(8px); }
+    100%{ opacity:1; filter:blur(0); }
 }
 
 @keyframes bellSwing{
-
-0%,100%{
-
-transform:
-
-rotate(-2deg);
-
+    0%,100%{ transform:rotate(-3deg) scale(var(--s,1)); }
+    50%{ transform:rotate(3deg) scale(var(--s,1)); }
 }
 
-50%{
+/* small green cap connecting bell to its stalk */
 
-transform:
+.bell::before{
+    content:"";
+    position:absolute;
+    left:13px;
+    top:-6px;
+    width:12px;
+    height:8px;
 
-rotate(3deg);
-
+    background:linear-gradient(var(--cap-light),var(--cap));
+    border-radius:50%;
 }
 
+/* the bell-shaped petal */
+
+.petal{
+    position:absolute;
+    inset:0;
+
+    background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.95),white 45%,#eef5ef 70%,var(--petal-shadow));
+    border-radius:48% 48% 42% 42%;
+    overflow:hidden;
+
+    box-shadow:inset -2px -4px 6px rgba(0,0,0,.08);
+}
+
+.petal::before{
+    /* highlight */
+    content:"";
+    position:absolute;
+    left:8px;
+    top:5px;
+    width:12px;
+    height:18px;
+    border-radius:50%;
+    background:rgba(255,255,255,.65);
+    filter:blur(2px);
+}
+
+.petal::after{
+    /* soft shadow */
+    content:"";
+    position:absolute;
+    right:5px;
+    bottom:8px;
+    width:12px;
+    height:18px;
+    border-radius:50%;
+    background:rgba(160,160,160,.15);
+    filter:blur(4px);
+}
+
+.ridge{
+    position:absolute;
+    top:8px;
+    width:2px;
+    height:26px;
+    border-radius:50%;
+    background:rgba(255,255,255,.28);
+}
+
+.r1{ left:6px; }
+.r2{ left:14px; }
+.r3{ left:22px; }
+.r4{ left:30px; }
+
+.scallop{
+    position:absolute;
+    bottom:-2px;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:white;
+    box-shadow:inset 0 -1px 1px rgba(0,0,0,.08);
+}
+
+.sc1{ left:0; }
+.sc2{ left:7px; }
+.sc3{ left:14px; }
+.sc4{ left:21px; }
+.sc5{ left:28px; }
+
+.center-hole{
+    position:absolute;
+    bottom:5px;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:6px;
+    height:4px;
+    border-radius:50%;
+
+    background:#d4d8d4;
+    opacity:.65;
+}
+
+/* ========================================================
+   LEAVES
+======================================================== */
+
+.leaf{
+    position:absolute;
+
+    background:linear-gradient(90deg,var(--leaf-dark),var(--leaf),#9af39f);
+    box-shadow:inset -8px 0 10px rgba(0,0,0,.08);
+    overflow:hidden;
+
+    animation:leafGlow 6s ease-in-out infinite;
+}
+
+.leaf::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:0;
+    width:2px;
+    height:100%;
+    background:rgba(255,255,255,.35);
+}
+
+.leaf::after{
+    content:"";
+    position:absolute;
+    left:0;
+    top:45%;
+    width:100%;
+    height:2px;
+    background:rgba(255,255,255,.12);
+    transform:rotate(-8deg);
+}
+
+@keyframes leafGlow{
+    0%,100%{ filter:brightness(1); }
+    50%{ filter:brightness(1.12); }
+}
+
+.leaf-left1{
+    width:95px;
+    height:230px;
+    left:-70px;
+    bottom:20px;
+    border-radius:100% 0;
+    transform:rotate(-25deg);
+}
+
+.leaf-left2{
+    width:82px;
+    height:180px;
+    left:-55px;
+    bottom:90px;
+    border-radius:100% 0;
+    transform:rotate(-10deg);
+}
+
+.leaf-right1{
+    width:95px;
+    height:220px;
+    left:8px;
+    bottom:30px;
+    border-radius:0 100%;
+    transform:rotate(18deg);
+}
+
+.leaf-right2{
+    width:75px;
+    height:170px;
+    left:20px;
+    bottom:95px;
+    border-radius:0 100%;
+    transform:rotate(28deg);
+}
+
+/* ========================================================
+   GRASS
+======================================================== */
+
+.grass{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:120px;
+
+    background:linear-gradient(to top,#0c3515,#174d24);
+    overflow:hidden;
+}
+
+.grass::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    opacity:.25;
+
+    background:repeating-linear-gradient(
+        90deg,
+        transparent 0 6px,
+        rgba(255,255,255,.03) 6px 7px
+    );
+}
+
+/* ========================================================
+   RESPONSIVE
+======================================================== */
+
+@media(max-width:960px){
+    .garden{ transform:scale(.72); }
+    #title{ font-size:2.2rem; }
+}
+
+@media(max-width:600px){
+    .garden{ transform:scale(.5); }
+    #title{ font-size:1.5rem; letter-spacing:3px; }
+    .moon{ width:90px; height:90px; top:30px; right:30px; }
 }
