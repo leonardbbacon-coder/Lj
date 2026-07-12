@@ -1,0 +1,46 @@
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(135deg, #ffe6f0, #ffd6e7);
+  font-family: "Poppins", Arial, sans-serif;
+  padding: 24px;
+}
+
+.paper{
+  max-width: 700px;
+  width: 100%;
+  background: white;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+h1{
+  margin:0 0 14px;
+  color: hotpink;
+  font-size: 28px;
+}
+
+#letterText{
+  font-size: 18px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  min-height: 180px;
+}
+
+.btn{
+  margin-top: 18px;
+  padding: 14px 18px;
+  border: none;
+  border-radius: 12px;
+  background: hotpink;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+.btn:active{
+  transform: scale(0.98);
+}
